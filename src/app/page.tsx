@@ -12,18 +12,20 @@ export default function Main() {
   console.log('Selected Type:', pokemonType)
 
   return (
-    <div className="flex">
+    <div className="flex min-w-screen">
       <MainSidebar
         selectedPokemon={selectedPokemon}
         onPokemonSelect={setSelectedPokemon}
         onTypeSelect={setPokemonType}
       />
 
-      <div className={`bg-${pokemonType} min-h-screen min-w-screen`}>
+      <div className={`bg-${pokemonType || 'gray-100'} flex-1 min-h-screen`}>
         <PokemonIdentity
           selectedPokemon={selectedPokemon}
           selectedType={pokemonType}
         />
+
+
       </div>
     </div>
 
