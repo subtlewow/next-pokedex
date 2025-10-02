@@ -18,6 +18,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        lora: ['var(--font-lora)', 'serif'],
+      },
       colors: {
         // Pokémon Types
         bug: '#A7B723',
@@ -42,7 +45,7 @@ module.exports = {
         'dark-gray': '#212121',
         'medium-gray': '#666666',
         'light-gray': '#E0E0E0',
-        background: '#EFEFEF',
+        // background: '#EFEFEF',
         white: '#FFFFFF',
         // Primary
         primary: '#DC0A2D',

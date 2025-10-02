@@ -13,11 +13,19 @@ export type PokemonSprites = {
     sprites: SpriteJSON;
 }
 
+export type PokemonStat = {
+    base_stat: number
+    stat: {
+        name: string
+    }
+}
+
 export type Pokemon = {
     id: number
     name: string
     pokemonsprites: PokemonSprites[]
     pokemontypes: PokemonType[]
+    pokemonstats: PokemonStat[]
 }
 
 export type PokemonData = {
