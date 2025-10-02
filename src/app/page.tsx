@@ -12,19 +12,22 @@ export default function Main() {
   console.log('Selected Type:', pokemonType)
 
   return (
-    <div className="flex min-h-screen w-full">
-      <MainSidebar
-        selectedPokemon={selectedPokemon}
-        onPokemonSelect={setSelectedPokemon}
-        onTypeSelect={setPokemonType}
-      />
+    <main className="h-dvh min-w-screen md:h-screen  min-h-0 flex overflow-hidden">
 
-      <div className={`bg-${pokemonType || 'gray-100'} flex-1 min-h-screen w-full`}>
-        <PokemonContent
+      <div className="flex h-full w-full min-h-0">
+        <MainSidebar
           selectedPokemon={selectedPokemon}
-          selectedType={pokemonType}
+          onPokemonSelect={setSelectedPokemon}
+          onTypeSelect={setPokemonType}
         />
+
+        <div className={`bg-${pokemonType || 'gray-100'} w-full h-full flex-1 min-h-0`}>
+          <PokemonContent
+            selectedPokemon={selectedPokemon}
+            selectedType={pokemonType}
+          />
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

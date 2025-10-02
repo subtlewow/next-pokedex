@@ -11,6 +11,7 @@ import {
   SidebarMenu,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+
 // import { motion } from 'framer-motion';
 import { usePokemonData } from "@/hooks/usePokemonData";
 import SearchBar from "@/features/pokemon/components/SearchBar";
@@ -92,9 +93,9 @@ export function MainSidebar({ selectedPokemon, onPokemonSelect, onTypeSelect }: 
   if (error) return <p>Error: {error.message}</p>
 
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
+    <Sidebar className="h-full">
+      <SidebarContent className="h-full flex flex-col">
+        <SidebarGroup className="flex-shrink-0">
           <div className="sticky top-0 pt-2 z-10 bg-sidebar">
             <div className="flex items-center justify-between">
               <SidebarGroupLabel className="text-sm">
@@ -110,7 +111,7 @@ export function MainSidebar({ selectedPokemon, onPokemonSelect, onTypeSelect }: 
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm} />
 
-            <div className="flex py-4 px-1 items-center">
+            <div className="flex flex-wrap py-4 px-1 items-center gap-2">
                 Sort by:
 
                 <FilterButton
@@ -138,45 +139,49 @@ export function MainSidebar({ selectedPokemon, onPokemonSelect, onTypeSelect }: 
                 />
 
                 {/* Conditional rendering based on selected type */}
-                {selectedType && (
-                  <div className="flex items-center gap-2 px-2 py-1 bg-blue-100 dark:bg-blue-900/20 rounded-md border border-blue-200 dark:border-blue-800 ml-2">
-                    <span className="text-xs text-blue-700 dark:text-blue-300 font-medium">
-                      Filtered by: {selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}
-                    </span>
-                    <button
-                      onClick={() => setSelectedType(null)}
-                      className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-200 transition-colors"
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
-                )}
-
-                {/* repeating code here; refactor later */}
-                {
-                  ((!idSortActive || currActive !== 'ID') &&
-                    <button
-                      className={`flex items-center hover:underline hover:cursor-pointer text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} pl-4`}
-                      onClick={() => {
-                        handleSort('id')
-                      }}>
-                        <X className="w-4 h-4 pr-1"/> Reset
-                    </button>
-                  )
-                }
+                <div className="flex pl-16">
+                  {selectedType && (
+                    <div className="flex flex-1 items-center gap-2 px-2 py-1 bg-blue-100 dark:bg-blue-900/20 rounded-md border border-blue-200 dark:border-blue-800 ml-2">
+                      <span className="text-xs text-blue-700 dark:text-blue-300 font-medium">
+                        Filtered by: {selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}
+                      </span>
+                      <button
+                        onClick={() => setSelectedType(null)}
+                        className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-200 transition-colors"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  )}
+                  {/* repeating code here; refactor later */}
+                  {
+                    ((!idSortActive || currActive !== 'ID') &&
+                      <button
+                        className={`flex items-center hover:underline hover:cursor-pointer text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} pl-4`}
+                        onClick={() => {
+                          handleSort('id')
+                        }}>
+                          <X className="w-4 h-4 pr-1"/> Reset
+                      </button>
+                    )
+                  }
+                </div>
             </div>
 
           </div>
-            <SidebarGroupContent>
-              <SidebarMenu className='w-full'>
-                <PokemonList
-                  selectedPokemon={selectedPokemon}
-                  onPokemonSelect={onPokemonSelect}
-                  onTypeSelect={onTypeSelect}
-                  pokemons={filteredPokemon}
-                />
-              </SidebarMenu>
-            </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup className="flex-1 overflow-hidden">
+          <SidebarGroupContent className="h-full overflow-y-auto">
+
+            <SidebarMenu className='w-full'>
+              <PokemonList
+                selectedPokemon={selectedPokemon}
+                onPokemonSelect={onPokemonSelect}
+                onTypeSelect={onTypeSelect}
+                pokemons={filteredPokemon}
+              />
+            </SidebarMenu>
+          </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>

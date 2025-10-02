@@ -9,7 +9,7 @@ import ThemeProvider from "./theme-provider";
 export function Providers({ children }: PropsWithChildren) {
     return (
         <SidebarProvider>
-            <main>
+            <main className="min-h-screen">
                 <ApolloProvider client={client}>
                     <ThemeProvider
                         attribute="class"

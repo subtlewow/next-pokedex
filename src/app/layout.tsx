@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lora, Geist } from "next/font/google";
+import { Geist } from "next/font/google";
 import { Providers } from "./providers";
 import { PropsWithChildren } from "react";
 import "./globals.css";
@@ -9,10 +9,6 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const lora = Lora({
-  subsets: ["latin"],
-  variable: "--font-lora"
-})
 
 
 export const metadata: Metadata = {
@@ -22,10 +18,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: PropsWithChildren) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className}`}>
+    <html lang="en" suppressHydrationWarning className="h-full">
+      <body className={`${geistSans.className} h-full`}>
         <Providers>
-          {children}
+          <div className="h-full">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
