@@ -8,9 +8,6 @@ export default function Main() {
   const [selectedPokemon, setSelectedPokemon] = useState<string | null>(null);
   const [pokemonType, setPokemonType] = useState<string | null>(null);
 
-  console.log('Selected Pokemon:', selectedPokemon)
-  console.log('Selected Type:', pokemonType)
-
   return (
     <main className="h-dvh min-w-screen md:h-screen  min-h-0 flex overflow-hidden">
 
